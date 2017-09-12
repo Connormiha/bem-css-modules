@@ -1,0 +1,11 @@
+{
+  "testRegex": "/__tests__/.*\\.spec\\.js$",
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "bail": true,
+  "collectCoverageFrom": [
+    "src/**/*.js"
+  ]
+}

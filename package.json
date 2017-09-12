@@ -1,0 +1,50 @@
+{
+  "name": "bem-css-modules",
+  "description": "BEM class name generator for webpack css modules",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Mikhail Bodrov",
+  "engines": {
+    "node": ">=6.4.0"
+  },
+  "main": "dist/bem-css-modules.js",
+  "module": "src/bem-css-modules.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Connormiha/bem-css-modules.git"
+  },
+  "keywords": [
+    "BEM",
+    "webpack",
+    "css-import",
+    "class",
+    "classname",
+    "block",
+    "element",
+    "modifier",
+    "css",
+    "module",
+    "css-module"
+  ],
+  "scripts": {
+    "build": "rm -fr dist && mkdir dist && babel src/bem-css-modules.js --out-file dist/bem-css-modules.js",
+    "coverage": "jest --coverage --config jest.json",
+    "lint": "eslint src",
+    "precommit": "npm run lint && npm test",
+    "prepush": "npm run lint && npm test",
+    "prepare": "npm run lint && npm test",
+    "test": "jest --no-cache --config jest.json"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
+    "babel-preset-minify": "0.2.0",
+    "eslint": "4.6.1",
+    "eslint-plugin-jest": "21.0.2",
+    "flow-bin": "0.54.1",
+    "husky": "0.14.3",
+    "jest-cli": "21.0.2"
+  }
+}
