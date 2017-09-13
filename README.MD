@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Connormiha/bem-css-modules.svg?branch=master)](https://travis-ci.org/Connormiha/bem-css-modules)
+
 # BEM class names generator for Webpack CSS modules
 Simple [BEM](https://en.bem.info/) class name generator for Webpack CSS modules.
 
