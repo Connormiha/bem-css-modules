@@ -28,11 +28,12 @@
   ],
   "scripts": {
     "build": "rm -fr dist && mkdir dist && babel src/bem-css-modules.js --out-file dist/bem-css-modules.js",
+    "types": "flow check __tests__/flow-types",
     "coverage": "jest --coverage --config jest.json",
     "lint": "eslint src",
-    "precommit": "npm run lint && npm test",
-    "prepush": "npm run lint && npm test",
-    "prepare": "npm run lint && npm test",
+    "precommit": "npm run lint && npm test && npm run types",
+    "prepush": "npm run lint && npm test && npm run types",
+    "prepare": "npm run lint && npm test && npm run types",
     "test": "jest --no-cache --config jest.json"
   },
   "devDependencies": {

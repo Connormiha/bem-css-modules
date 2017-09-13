@@ -1,0 +1,13 @@
+// @flow
+
+type ModsType = {
+    [string]: boolean | string | number;
+} | null;
+
+type StatesType = {
+    [string]: boolean;
+} | null;
+
+type Block = (element?: string | null, mods?: ModsType, states?: StatesType) => string;
+
+declare module.exports: (cssModule: Object) => Block;
