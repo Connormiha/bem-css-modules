@@ -27,7 +27,7 @@
     "css-module"
   ],
   "scripts": {
-    "build": "rm -fr dist && mkdir dist && babel src/bem-css-modules.js --out-file dist/bem-css-modules.js",
+    "build": "rm -fr dist && mkdir dist && cp src/* dist && babel src/bem-css-modules.js --out-file dist/bem-css-modules.js",
     "types": "tsc -p __tests__/ts-types && flow check __tests__/flow-types",
     "coverage": "jest --coverage --config jest.json",
     "lint": "eslint src",
