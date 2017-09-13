@@ -1,6 +1,4 @@
-/* @flow */
-
-const block = require('../../src/bem-css-modules.js');
+import block from '../../src/bem-css-modules.js';
 
 block({foo: '1'});
 block({foo: '1'})('element');

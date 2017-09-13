@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "build": "rm -fr dist && mkdir dist && babel src/bem-css-modules.js --out-file dist/bem-css-modules.js",
-    "types": "flow check __tests__/flow-types",
+    "types": "tsc -p __tests__/ts-types && flow check __tests__/flow-types",
     "coverage": "jest --coverage --config jest.json",
     "lint": "eslint src",
     "precommit": "npm run lint && npm test && npm run types",
@@ -46,6 +46,7 @@
     "eslint-plugin-jest": "21.0.2",
     "flow-bin": "0.54.1",
     "husky": "0.14.3",
-    "jest-cli": "21.0.2"
+    "jest-cli": "21.0.2",
+    "typescript": "^2.5.2"
   }
 }

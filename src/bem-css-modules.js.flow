@@ -1,5 +1,9 @@
 // @flow
 
+type CssModuleType = {
+    [string]: string;
+};
+
 type ModsType = {
     [string]: boolean | string | number;
 } | null;
@@ -10,4 +14,4 @@ type StatesType = {
 
 type Block = (element?: string | null, mods?: ModsType, states?: StatesType) => string;
 
-declare module.exports: (cssModule: Object) => Block;
+declare module.exports: (cssModule: CssModuleType) => Block;
