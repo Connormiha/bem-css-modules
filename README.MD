@@ -29,6 +29,9 @@ We have some css with BEM CSS naming
     &__title
         font-size: 18px
 ```
+Now we can import css files inside Javascript files with short names(compressed by Webpack).
+
+### Example (without BEM generator)
 Javascript component
 ```jsx
 import style from './form-payment.styl';
@@ -46,6 +49,7 @@ import style from './form-payment.styl';
 export default () => {
     return (
         <div className={stylus.form}>
+            {/* We get className from imported style module*/}
             <h1 className={stylus['form__title']}>Title</h1>
             <label className={stylus['form__label']}>
                 Simple label
@@ -59,6 +63,7 @@ export default () => {
 ```
 If we have many elements with a lot of modifiers, then it is difficult to concat the class name.  
 With bem-css-modules we can simplify component code with BEM generator for imported module.
+### Example (with BEM generator)
 ```jsx
 import style from './form-payment.styl';
 import block from 'bem-css-modules';

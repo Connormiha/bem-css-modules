@@ -12,6 +12,6 @@ type StatesType = {
     [string]: boolean;
 } | null;
 
-type Block = (element?: string | null, mods?: ModsType, states?: StatesType) => string;
+declare function Block(element?: string | null, mods?: ModsType, states?: StatesType): string;
 
-declare module.exports: (cssModule: CssModuleType) => Block;
+export default (cssModule: CssModuleType) => Block;
