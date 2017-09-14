@@ -11,4 +11,4 @@ declare interface StatesType {
 }
 
 declare function Block(element?: string, mods?: ModsType | null, states?: StatesType | null): string;
-export default (cssModule: CssModuleType) => Block;
+export default (cssModule: CssModuleType, name?: string) => Block;

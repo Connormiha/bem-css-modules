@@ -70,6 +70,8 @@ function block(cssModule, name, element, mods, states) {
     return result;
 }
 
+const regExpClearBEM = /__.*/g;
+
 const extractModuleName = (cssModule) => {
     if (process.env.NODE_ENV !== 'production') {
         if (!cssModule || typeof cssModule !== 'object' || Array.isArray(cssModule)) {
@@ -85,10 +87,10 @@ const extractModuleName = (cssModule) => {
         }
     }
 
-    return name.replace(/__.*/g, '');
+    return name.replace(regExpClearBEM, '');
 };
 
-const bem = (cssModule) =>
-    block.bind(null, cssModule, extractModuleName(cssModule));
+const bem = (cssModule, name) =>
+    block.bind(null, cssModule, name || extractModuleName(cssModule));
 
 export default bem;

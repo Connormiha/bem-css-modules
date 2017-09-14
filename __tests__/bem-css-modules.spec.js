@@ -60,6 +60,28 @@ describe('bem-css-modules', () => {
         );
     });
 
+    it('should work with dirty module', () => {
+        let dirtyBlock = bem({
+            input: 'INPUT',
+            input__icon: 'INPUT__ICON',
+            button: 'BUTTON',
+            button__icon: 'BUTTON__ICON',
+        }, 'button');
+
+        expect(dirtyBlock()).toBe('BUTTON');
+        expect(dirtyBlock('icon')).toBe('BUTTON__ICON');
+
+        dirtyBlock = bem({
+            input: 'INPUT',
+            input__icon: 'INPUT__ICON',
+            button: 'BUTTON',
+            button__icon: 'BUTTON__ICON',
+        }, 'input');
+
+        expect(dirtyBlock()).toBe('INPUT');
+        expect(dirtyBlock('icon')).toBe('INPUT__ICON');
+    });
+
     describe('errors', () => {
         it('should throw error with invalid css modules', () => {
             expect(() => bem()).toThrowError('cssModule object should be a Object with keys');

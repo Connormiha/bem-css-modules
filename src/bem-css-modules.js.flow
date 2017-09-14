@@ -2,16 +2,22 @@
 
 type CssModuleType = {
     [string]: string;
+} | {
+    +[string]: string;
 };
 
 type ModsType = {
     [string]: boolean | string | number;
+} | {
+    +[string]: boolean | string | number;
 } | null;
 
 type StatesType = {
     [string]: boolean;
+} | {
+    +[string]: boolean;
 } | null;
 
 declare function Block(element?: string | null, mods?: ModsType, states?: StatesType): string;
 
-export default (cssModule: CssModuleType) => Block;
+export default (cssModule: CssModuleType, name?: string) => Block;
