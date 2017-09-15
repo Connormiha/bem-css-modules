@@ -1,7 +1,7 @@
 {
   "name": "bem-css-modules",
   "description": "BEM class name generator for webpack css modules",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Mikhail Bodrov",
   "engines": {
@@ -34,7 +34,7 @@
     "lint": "eslint src",
     "precommit": "npm run lint && npm test && npm run types",
     "prepush": "npm run lint && npm test && npm run types",
-    "prepare": "npm run lint && npm test && npm run types",
+    "prepare": "npm run lint && npm test && npm run types && npm run build",
     "test": "jest --no-cache --config jest.json"
   },
   "devDependencies": {
@@ -43,11 +43,11 @@
     "babel-eslint": "8.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
     "babel-preset-minify": "0.2.0",
-    "eslint": "4.6.1",
-    "eslint-plugin-jest": "21.0.2",
+    "eslint": "4.7.0",
+    "eslint-plugin-jest": "21.1.0",
     "flow-bin": "0.54.1",
     "husky": "0.14.3",
-    "jest-cli": "21.0.2",
+    "jest-cli": "21.1.0",
     "typescript": "^2.5.2"
   }
 }
