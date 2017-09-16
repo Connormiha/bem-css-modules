@@ -8,16 +8,12 @@ type CssModuleType = {
 
 type ModsType = {
     [string]: boolean | string | number;
-} | {
-    +[string]: boolean | string | number;
-} | null;
+};
 
 type StatesType = {
     [string]: boolean;
-} | {
-    +[string]: boolean;
-} | null;
+};
 
-declare function Block(element?: string | null, mods?: ModsType, states?: StatesType): string;
+declare function Block(element?: string | null, mods?: ModsType | null, states?: StatesType | null): string;
 
 export default (cssModule: CssModuleType, name?: string) => Block;

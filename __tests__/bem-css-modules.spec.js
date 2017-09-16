@@ -27,6 +27,8 @@ describe('bem-css-modules', () => {
     it('should return elements', () => {
         expect(block('icon')).toBe('HASH_INPUT_ICON');
         expect(block('field')).toBe('HASH_INPUT_FIELD');
+
+        expect(bem({input__field: 'foo'})('field')).toBe('foo');
     });
 
     it('should return elements with mods', () => {
