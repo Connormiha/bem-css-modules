@@ -15,5 +15,6 @@ type StatesType = {
 };
 
 declare function Block(element?: string | null, mods?: ModsType | null, states?: StatesType | null): string;
+declare function Block(mods?: ModsType | null, states?: StatesType | null): string;
 
 export default (cssModule: CssModuleType, name?: string) => Block;

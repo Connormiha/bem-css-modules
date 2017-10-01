@@ -3,6 +3,7 @@ import bem from 'bem-css-modules';
 
 const mockCSSModule = {
     input: 'HASH_INPUT',
+    input_disabled: 'HASH_INPUT_DISABLED',
     input__field: 'HASH_INPUT_FIELD',
     input__field_disabled: 'HASH_INPUT_FIELD_DISABLED',
     input__field_type_text: 'HASH_INPUT_FIELD_TYPE_TEXT',
@@ -22,6 +23,34 @@ describe('bem-css-modules', () => {
         expect(block()).toBe('HASH_INPUT');
         expect(block(null)).toBe('HASH_INPUT');
         expect(block('')).toBe('HASH_INPUT');
+    });
+
+    it('should return base element with mods', () => {
+        expect(
+            namesToArray(block('', {disabled: true}))
+        ).toEqual(namesToArray('HASH_INPUT HASH_INPUT_DISABLED'));
+
+        expect(
+            namesToArray(block(null, {disabled: true}))
+        ).toEqual(namesToArray('HASH_INPUT HASH_INPUT_DISABLED'));
+
+        expect(
+            namesToArray(block({disabled: true}))
+        ).toEqual(namesToArray('HASH_INPUT HASH_INPUT_DISABLED'));
+    });
+
+    it('should return base element with mods and states', () => {
+        expect(
+            namesToArray(block('', {disabled: true}, {active: true}))
+        ).toEqual(namesToArray('HASH_INPUT HASH_INPUT_DISABLED HASH_IS_ACTIVE'));
+
+        expect(
+            namesToArray(block(null, {disabled: true}, {active: true}))
+        ).toEqual(namesToArray('HASH_INPUT HASH_INPUT_DISABLED HASH_IS_ACTIVE'));
+
+        expect(
+            namesToArray(block({disabled: true}, {active: true}))
+        ).toEqual(namesToArray('HASH_INPUT HASH_INPUT_DISABLED HASH_IS_ACTIVE'));
     });
 
     it('should return elements', () => {

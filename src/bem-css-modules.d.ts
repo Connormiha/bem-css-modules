@@ -1,6 +1,8 @@
-declare interface CssModuleType {
+type CssModuleType = {
     [key: string]: string;
-}
+} | {
+    readonly [key: string]: string;
+};
 
 declare interface ModsType {
     [key: string]: boolean | string | number;
@@ -11,4 +13,5 @@ declare interface StatesType {
 }
 
 declare function Block(element?: string, mods?: ModsType | null, states?: StatesType | null): string;
+declare function Block(mods?: ModsType | null, states?: StatesType | null): string;
 export default (cssModule: CssModuleType, name?: string) => Block;

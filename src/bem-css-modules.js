@@ -7,7 +7,12 @@
  * @param {Object} [states]
  * @return {String}
  */
-function block(cssModule, name, element, mods, states) {
+function block(cssModule, name, elementParam, modsParam, statesParam) {
+    const isElementAsModes = elementParam && typeof elementParam === 'object';
+    const mods = isElementAsModes ? elementParam : modsParam;
+    const states = isElementAsModes ? modsParam : statesParam;
+    const element = isElementAsModes ? '' : elementParam;
+
     const baseBlock = element ? `${name}__${element}` : name;
     let result = cssModule[baseBlock];
 

@@ -41,6 +41,8 @@ rules:
   capitalized-comments: off
   object-property-newline: off
   dot-location: off
+  no-undefined: off
+  no-negated-condition: off
   multiline-ternary: off
   max-statements: off
   no-ternary: off
