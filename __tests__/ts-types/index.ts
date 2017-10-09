@@ -17,3 +17,6 @@ type Foo = {
 
 const styleModule: Foo = Object.freeze({foo: '1'});
 block(styleModule);
+
+block.setSettings({throwOnError: true});
+block.setSettings({});

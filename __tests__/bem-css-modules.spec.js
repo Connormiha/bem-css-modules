@@ -113,7 +113,15 @@ describe('bem-css-modules', () => {
         expect(dirtyBlock('icon')).toBe('INPUT__ICON');
     });
 
-    describe('errors', () => {
+    describe('errors with throwOnError = true', () => {
+        beforeEach(() => {
+            bem.setSettings({throwOnError: true});
+        });
+
+        afterAll(() => {
+            bem.setSettings({throwOnError: false});
+        });
+
         it('should throw error with invalid css modules', () => {
             expect(() => bem()).toThrowError('cssModule object should be a Object with keys');
             expect(() => bem(null)).toThrowError('cssModule object should be a Object with keys');
@@ -145,6 +153,65 @@ describe('bem-css-modules', () => {
 
         it('should throw error with unexisted states', () => {
             expect(() => block('icon', null, {foo: true})).toThrowError('There is no is-foo in cssModule');
+        });
+    });
+
+    describe('errors with throwOnError = false', () => {
+        let spy;
+
+        beforeEach(() => {
+            spy = jest.spyOn(global.console, 'warn').mockImplementation(() => null);
+        });
+
+        afterEach(() => {
+            spy.mockReset();
+            spy.mockRestore();
+        });
+
+        it('should throw error with invalid css modules', () => {
+            [
+                [() => bem(), 'cssModule object should be a Object with keys'],
+                [() => bem(null), 'cssModule object should be a Object with keys'],
+                [() => bem(false), 'cssModule object should be a Object with keys'],
+                [() => bem('foo'), 'cssModule object should be a Object with keys'],
+                [() => bem([]), 'cssModule object should be a Object with keys'],
+            ].forEach(([fn, message]) => {
+                spy.mockReset();
+                fn();
+                expect(spy).toHaveBeenCalledWith(message);
+            });
+        });
+
+        it('should throw error with css modules without keys', () => {
+            bem({});
+            expect(spy).toHaveBeenCalledWith('cssModule has no keys');
+
+            function SomeClass() {
+                // pass
+            }
+
+            SomeClass.prototype = {foo: 1};
+
+            bem(new SomeClass());
+            expect(spy).toHaveBeenCalledWith('cssModule has no keys');
+        });
+
+        it('should throw error with unexisted elements', () => {
+            block('foo');
+            expect(spy).toHaveBeenCalledWith('There is no input__foo in cssModule');
+        });
+
+        it('should throw error with unexisted mods', () => {
+            block('icon', {foo: true});
+            expect(spy).toHaveBeenCalledWith('There is no input__icon_foo in cssModule');
+
+            block('icon', {foo: 'bar'});
+            expect(spy).toHaveBeenCalledWith('There is no input__icon_foo_bar in cssModule');
+        });
+
+        it('should throw error with unexisted states', () => {
+            block('icon', null, {foo: true});
+            expect(spy).toHaveBeenCalledWith('There is no is-foo in cssModule');
         });
     });
 });

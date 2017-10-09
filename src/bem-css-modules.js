@@ -1,3 +1,6 @@
+const isDev = process.env.NODE_ENV !== 'production';
+const settings = {throwOnError: false};
+
 /**
  * Base function for bem naming with css modules
  * @param {Object} cssModule. Imported css module
@@ -16,9 +19,16 @@ function block(cssModule, name, elementParam, modsParam, statesParam) {
     const baseBlock = element ? `${name}__${element}` : name;
     let result = cssModule[baseBlock];
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (isDev) {
         if (!result) {
-            throw Error(`There is no ${name}__${element} in cssModule`);
+            const message = `There is no ${name}__${element} in cssModule`;
+
+            if (settings.throwOnError) {
+                throw Error(message);
+            } else {
+                console.warn(message);
+                return '';
+            }
         }
     }
 
@@ -30,9 +40,16 @@ function block(cssModule, name, elementParam, modsParam, statesParam) {
                 let mod;
 
                 if (typeof modValue === 'boolean') {
-                    if (process.env.NODE_ENV !== 'production') {
+                    if (isDev) {
                         if (!(`${baseBlock}_${next}` in cssModule)) {
-                            throw Error(`There is no ${baseBlock}_${next} in cssModule`);
+                            const message = `There is no ${baseBlock}_${next} in cssModule`;
+
+                            if (settings.throwOnError) {
+                                throw Error(message);
+                            } else {
+                                console.warn(message);
+                                return '';
+                            }
                         }
                     }
 
@@ -42,9 +59,16 @@ function block(cssModule, name, elementParam, modsParam, statesParam) {
                         return acc;
                     }
                 } else {
-                    if (process.env.NODE_ENV !== 'production') {
+                    if (isDev) {
                         if (!(`${baseBlock}_${next}_${mods[next]}` in cssModule)) {
-                            throw Error(`There is no ${baseBlock}_${next}_${mods[next]} in cssModule`);
+                            const message = `There is no ${baseBlock}_${next}_${mods[next]} in cssModule`;
+
+                            if (settings.throwOnError) {
+                                throw Error(message);
+                            } else {
+                                console.warn(message);
+                                return '';
+                            }
                         }
                     }
 
@@ -65,7 +89,14 @@ function block(cssModule, name, elementParam, modsParam, statesParam) {
                 const state = cssModule[`is-${next}`];
 
                 if (!state) {
-                    throw Error(`There is no is-${next} in cssModule`);
+                    const message = `There is no is-${next} in cssModule`;
+
+                    if (settings.throwOnError) {
+                        throw Error(message);
+                    } else {
+                        console.warn(message);
+                        return '';
+                    }
                 }
 
                 return `${acc} ${state}`;
@@ -78,17 +109,31 @@ function block(cssModule, name, elementParam, modsParam, statesParam) {
 const regExpClearBEM = /__.*/g;
 
 const extractModuleName = (cssModule) => {
-    if (process.env.NODE_ENV !== 'production') {
+    if (isDev) {
         if (!cssModule || typeof cssModule !== 'object' || Array.isArray(cssModule)) {
-            throw Error('cssModule object should be a Object with keys');
+            const message = 'cssModule object should be a Object with keys';
+
+            if (settings.throwOnError) {
+                throw Error(message);
+            } else {
+                console.warn(message);
+                return '';
+            }
         }
     }
 
     const [name] = Object.keys(cssModule);
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (isDev) {
         if (!name) {
-            throw Error('cssModule has no keys');
+            const message = 'cssModule has no keys';
+
+            if (settings.throwOnError) {
+                throw Error(message);
+            } else {
+                console.warn(message);
+                return '';
+            }
         }
     }
 
@@ -97,5 +142,8 @@ const extractModuleName = (cssModule) => {
 
 const bem = (cssModule, name) =>
     block.bind(null, cssModule, name || extractModuleName(cssModule));
+
+bem.setSettings = (newSettings) =>
+    Object.assign(settings, newSettings);
 
 export default bem;

@@ -76,10 +76,10 @@ export default () => {
             <h1 className={b('title')}>Title</h1>
             <label className={b('label')}>
                 Simple label
-            <labale>
+            </label>
             <label className={b('label', {error: true})}>
                 Label Error
-            <labale>
+            </label>
         </div>
     );
 }
@@ -116,3 +116,12 @@ b('icon', {active: true, removed: false); // 'HASH_INPUT_ICON HASH_IS_ACTIVE' (f
 ### Flow and Typescript
 
 Flow and Typescript definitions already included.
+
+### Options
+Type: `Object`  
+
+##### throwOnError
+Type: `Boolean`  
+Default: `false`  
+
+Throw exception if mod, element or state didn't found.

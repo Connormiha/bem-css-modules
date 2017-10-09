@@ -14,7 +14,20 @@ type StatesType = {
     [string]: boolean;
 };
 
-declare function Block(element?: string | null, mods?: ModsType | null, states?: StatesType | null): string;
-declare function Block(mods?: ModsType | null, states?: StatesType | null): string;
+type Options = {|
+    throwOnError?: boolean;
+|};
 
-export default (cssModule: CssModuleType, name?: string) => Block;
+interface Block {
+    (element?: string | null, mods?: ModsType | null, states?: StatesType | null): string;
+    (mods?: ModsType | null, states?: StatesType | null): string;
+}
+
+interface Module {
+    (cssModule: CssModuleType, name?: string): Block;
+    setSettings(options: Options): void;
+}
+
+declare var bemModule: Module;
+
+export default bemModule;

@@ -14,3 +14,6 @@ block({foo: '1'})(null, null, {foo: true, foo1: false});
 
 const styleModule: {|+foo: string|} = {foo: '1'};
 block(styleModule);
+
+block.setSettings({throwOnError: true});
+block.setSettings({});

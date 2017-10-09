@@ -1,3 +1,7 @@
+## 1.2.0
+Now no throw error in dev mode on wrong preperties. But it still enable via settings.throwOnError;
+add: Method `setSettings()`
+
 ## 1.1.0
 Add option for skip element in first param
 

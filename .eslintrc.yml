@@ -48,9 +48,11 @@ rules:
   no-ternary: off
   init-declarations: off
   valid-jsdoc: off
+  no-console: off
   func-style: off
   no-process-env: off
   require-jsdoc: off
+  array-element-newline: off
   no-prototype-builtins: off
   no-continue: off
   max-params:

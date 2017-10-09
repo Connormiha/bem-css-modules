@@ -4,14 +4,28 @@ type CssModuleType = {
     readonly [key: string]: string;
 };
 
-declare interface ModsType {
+interface ModsType {
     [key: string]: boolean | string | number;
 }
 
-declare interface StatesType {
+interface StatesType {
     [key: string]: boolean;
 }
 
-declare function Block(element?: string, mods?: ModsType | null, states?: StatesType | null): string;
-declare function Block(mods?: ModsType | null, states?: StatesType | null): string;
-export default (cssModule: CssModuleType, name?: string) => Block;
+interface IBlock {
+    (element?: string, mods?: ModsType | null, states?: StatesType | null): string;
+    (mods?: ModsType | null, states?: StatesType | null): string;
+}
+
+interface IOptions {
+    throwOnError?: boolean;
+}
+
+interface IModule {
+    (cssModule: CssModuleType, name?: string): IBlock;
+    setSettings(options: IOptions): void;
+}
+
+declare var bemModule: IModule;
+
+export default bemModule;
