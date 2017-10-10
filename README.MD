@@ -124,4 +124,11 @@ Type: `Object`
 Type: `Boolean`  
 Default: `false`  
 
+#### Set settings
+
+```js
+const block = require('bem-css-modules');
+block.setSettings({throwOnError: true});
+```
+
 Throw exception if mod, element or state didn't found.
