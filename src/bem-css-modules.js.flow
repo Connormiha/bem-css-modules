@@ -19,8 +19,11 @@ type Options = {|
 |};
 
 interface Block {
-    (element?: string | null, mods?: ModsType | null, states?: StatesType | null): string;
-    (mods?: ModsType | null, states?: StatesType | null): string;
+    (): string;
+    (null): string;
+    (element: string, mods?: ModsType | null, states?: StatesType | null): string;
+    (null, mods: ModsType | null, states?: StatesType | null): string;
+    (mods: ModsType, states?: StatesType | null): string;
 }
 
 interface Module {
