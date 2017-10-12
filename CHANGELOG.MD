@@ -1,3 +1,6 @@
+## 1.2.1
+Minor fixes for Flow
+
 ## 1.2.0
 Now no throw error in dev mode on wrong properties. But it still enable via settings.throwOnError;
 add: Method `setSettings()`
