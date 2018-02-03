@@ -40,17 +40,14 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
-    "babel-eslint": "8.0.1",
+    "babel-eslint": "8.2.1",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
-    "babel-preset-minify": "0.2.0",
-    "eslint": "4.8.0",
-    "eslint-plugin-jest": "21.2.0",
-    "flow-bin": "0.56.0",
+    "babel-preset-minify": "0.3.0",
+    "eslint": "4.16.0",
+    "eslint-plugin-jest": "21.7.0",
+    "flow-bin": "0.64.0",
     "husky": "0.14.3",
-    "jest-cli": "21.2.1",
-    "typescript": "2.5.3"
-  },
-  "dependencies": {
-    "@types/jquery": "^3.2.13"
+    "jest-cli": "22.1.4",
+    "typescript": "2.7.1"
   }
 }

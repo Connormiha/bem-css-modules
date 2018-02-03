@@ -54,6 +54,7 @@ rules:
   require-jsdoc: off
   array-element-newline: off
   no-prototype-builtins: off
+  implicit-arrow-linebreak: off
   no-continue: off
   max-params:
   - error

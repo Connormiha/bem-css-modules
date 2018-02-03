@@ -53,10 +53,10 @@ export default () => {
             <h1 className={stylus['form__title']}>Title</h1>
             <label className={stylus['form__label']}>
                 Simple label
-            <labale>
+            </label>
             <label className={stylus['form__label'] + ' ' + stylus['form__label_error']}>
                 Label Error
-            <labale>
+            </label>
         </div>
     );
 }
