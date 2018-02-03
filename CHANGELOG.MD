@@ -1,3 +1,6 @@
+## 1.2.2
+Typo fixes
+
 ## 1.2.1
 Minor fixes for Flow
 
