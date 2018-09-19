@@ -47,6 +47,8 @@ rules:
   max-statements: off
   no-ternary: off
   init-declarations: off
+  require-unicode-regexp: off
+  max-lines-per-function: off
   valid-jsdoc: off
   no-console: off
   func-style: off

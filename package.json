@@ -38,16 +38,15 @@
     "test": "jest --no-cache --config jest.json"
   },
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.0",
-    "babel-eslint": "8.2.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
-    "babel-preset-minify": "0.3.0",
-    "eslint": "4.16.0",
-    "eslint-plugin-jest": "21.7.0",
-    "flow-bin": "0.64.0",
+    "@babel/core": "7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "7.0.0",
+    "babel-core": "^7.0.0-0",
+    "babel-eslint": "9.0.0",
+    "eslint": "5.6.0",
+    "eslint-plugin-jest": "21.22.0",
+    "flow-bin": "0.81.0",
     "husky": "0.14.3",
-    "jest-cli": "22.1.4",
-    "typescript": "2.7.1"
+    "jest-cli": "23.6.0",
+    "typescript": "3.0.3"
   }
 }
