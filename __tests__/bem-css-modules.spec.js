@@ -9,6 +9,7 @@ const mockCSSModule = {
     input__field_type_text: 'HASH_INPUT_FIELD_TYPE_TEXT',
     input__field_type_phone: 'HASH_INPUT_FIELD_TYPE_PHONE',
     input__icon: 'HASH_INPUT_ICON',
+    input__button_color_red: 'HASH_INPUT_BUTTON_COLOR_RED',
     'is-active': 'HASH_IS_ACTIVE',
     'is-removed': 'HASH_IS_REMOVED',
 };
@@ -58,6 +59,10 @@ describe('bem-css-modules', () => {
         expect(block('field')).toBe('HASH_INPUT_FIELD');
 
         expect(bem({input__field: 'foo'})('field')).toBe('foo');
+    });
+
+    it('should return only mods when no block in css', () => {
+        expect(block('button', {color: 'red'})).toBe('HASH_INPUT_BUTTON_COLOR_RED');
     });
 
     it('should return elements with mods', () => {
@@ -123,11 +128,11 @@ describe('bem-css-modules', () => {
         });
 
         it('should throw error with invalid css modules', () => {
-            expect(() => bem()).toThrowError('cssModule object should be a Object with keys');
-            expect(() => bem(null)).toThrowError('cssModule object should be a Object with keys');
-            expect(() => bem(false)).toThrowError('cssModule object should be a Object with keys');
-            expect(() => bem('foo')).toThrowError('cssModule object should be a Object with keys');
-            expect(() => bem([])).toThrowError('cssModule object should be a Object with keys');
+            expect(() => bem()).toThrowError('cssModule object should be an Object with keys');
+            expect(() => bem(null)).toThrowError('cssModule object should be an Object with keys');
+            expect(() => bem(false)).toThrowError('cssModule object should be an Object with keys');
+            expect(() => bem('foo')).toThrowError('cssModule object should be an Object with keys');
+            expect(() => bem([])).toThrowError('cssModule object should be an Object with keys');
         });
 
         it('should throw error with css modules without keys', () => {
@@ -170,11 +175,11 @@ describe('bem-css-modules', () => {
 
         it('should throw error with invalid css modules', () => {
             [
-                [() => bem(), 'cssModule object should be a Object with keys'],
-                [() => bem(null), 'cssModule object should be a Object with keys'],
-                [() => bem(false), 'cssModule object should be a Object with keys'],
-                [() => bem('foo'), 'cssModule object should be a Object with keys'],
-                [() => bem([]), 'cssModule object should be a Object with keys'],
+                [() => bem(), 'cssModule object should be an Object with keys'],
+                [() => bem(null), 'cssModule object should be an Object with keys'],
+                [() => bem(false), 'cssModule object should be an Object with keys'],
+                [() => bem('foo'), 'cssModule object should be an Object with keys'],
+                [() => bem([]), 'cssModule object should be an Object with keys'],
             ].forEach(([fn, message]) => {
                 spy.mockReset();
                 fn();

@@ -1,3 +1,6 @@
+## 1.3.0
+Allow mods without block
+
 ## 1.2.2
 Typo fixes
 

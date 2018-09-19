@@ -17,10 +17,10 @@ function block(cssModule, name, elementParam, modsParam, statesParam) {
     const element = isElementAsModes ? '' : elementParam;
 
     const baseBlock = element ? `${name}__${element}` : name;
-    let result = cssModule[baseBlock];
+    let result = cssModule[baseBlock] || '';
 
     if (isDev) {
-        if (!result) {
+        if (!result && !mods) {
             const message = `There is no ${name}__${element} in cssModule`;
 
             if (settings.throwOnError) {
@@ -103,7 +103,7 @@ function block(cssModule, name, elementParam, modsParam, statesParam) {
             }, result);
     }
 
-    return result;
+    return result.trim();
 }
 
 const regExpClearBEM = /__.*/g;
@@ -111,7 +111,7 @@ const regExpClearBEM = /__.*/g;
 const extractModuleName = (cssModule) => {
     if (isDev) {
         if (!cssModule || typeof cssModule !== 'object' || Array.isArray(cssModule)) {
-            const message = 'cssModule object should be a Object with keys';
+            const message = 'cssModule object should be an Object with keys';
 
             if (settings.throwOnError) {
                 throw Error(message);
