@@ -1,3 +1,6 @@
+## 1.3.1
+Use tsc instead of babel for complile
+
 ## 1.3.0
 Allow mods without block
 
