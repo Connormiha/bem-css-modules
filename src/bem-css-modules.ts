@@ -1,5 +1,35 @@
+type CssModuleType = {
+    [key: string]: string;
+} | {
+    readonly [key: string]: string;
+};
+
+interface ModsType {
+    [key: string]: boolean | string | number;
+}
+
+interface StatesType {
+    [key: string]: boolean;
+}
+
+interface IBlock {
+    (element?: string, mods?: ModsType | null, states?: StatesType | null): string;
+    (mods?: ModsType | null, states?: StatesType | null): string;
+}
+
+interface IOptions {
+    throwOnError?: boolean;
+}
+
+interface IModule {
+    (cssModule: CssModuleType, name?: string): IBlock;
+    setSettings(options: IOptions): void;
+}
+
 const isDev = process.env.NODE_ENV !== 'production';
-const settings = {throwOnError: false};
+const settings: IOptions = {
+    throwOnError: false
+};
 
 /**
  * Base function for bem naming with css modules
@@ -10,7 +40,7 @@ const settings = {throwOnError: false};
  * @param {Object} [states]
  * @return {String}
  */
-function block(cssModule, name, elementParam, modsParam, statesParam) {
+function block(cssModule: CssModuleType, name, elementParam, modsParam, statesParam) {
     const isElementAsModes = elementParam && typeof elementParam === 'object';
     const mods = isElementAsModes ? elementParam : modsParam;
     const states = isElementAsModes ? modsParam : statesParam;
@@ -140,10 +170,10 @@ const extractModuleName = (cssModule) => {
     return name.replace(regExpClearBEM, '');
 };
 
-const bem = (cssModule, name) =>
+const bem: any = (cssModule, name) =>
     block.bind(null, cssModule, name || extractModuleName(cssModule));
 
 bem.setSettings = (newSettings) =>
     Object.assign(settings, newSettings);
 
-export default bem;
+export default (bem as IModule);

@@ -28,25 +28,26 @@
     "css-module"
   ],
   "scripts": {
-    "build": "rm -fr dist && mkdir dist && cp src/* dist && babel src/bem-css-modules.js --out-file dist/bem-css-modules.js",
-    "types": "tsc -p __tests__/ts-types && flow check __tests__/flow-types",
-    "coverage": "jest --coverage --config jest.json",
-    "lint": "eslint src",
-    "precommit": "npm run lint && npm test && npm run types",
-    "prepush": "npm run lint && npm test && npm run types",
+    "build": "rm -fr dist && mkdir dist && cp src/*.flow dist && tsc -p src --outDir dist",
+    "types": "tsc -p __tests__/ts-types --noEmit && flow check __tests__/flow-types",
+    "coverage": "jest --coverage",
+    "lint": "tslint -p ./",
     "prepare": "npm run lint && npm test && npm run types && npm run build",
-    "test": "jest --no-cache --config jest.json"
+    "test": "jest --no-cache"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0",
-    "babel-core": "^7.0.0-0",
-    "babel-eslint": "9.0.0",
-    "eslint": "5.6.0",
-    "eslint-plugin-jest": "21.22.0",
+    "@types/jest": "23.3.2",
+    "@types/node": "10.11.3",
     "flow-bin": "0.81.0",
-    "husky": "0.14.3",
+    "husky": "1.0.1",
     "jest-cli": "23.6.0",
-    "typescript": "3.0.3"
+    "tslint": "5.11.0",
+    "typescript": "3.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm test && npm run types",
+      "pre-push": "npm run lint && npm test && npm run types"
+    }
   }
 }

@@ -1,5 +1,4 @@
-import bem from 'bem-css-modules';
-
+import bem from '../src/bem-css-modules';
 
 const mockCSSModule = {
     input: 'HASH_INPUT',

@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "commonjs",
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": true,
+        "declaration": true,
+        "lib": ["dom", "es2017"]
+    },
+    "compileOnSave": false,
+    "buildOnSave": false
+}

@@ -1,0 +1,88 @@
+{
+    "extends": ["tslint:latest"],
+    "defaultSeverity": "error",
+    "rules": {
+        "class-name": true,
+        "no-implicit-dependencies": false,
+        "comment-format": {
+            "options": "check-space"
+        },
+        "curly": true,
+        "eofline": true,
+        "forin": true,
+        "indent": {
+            "options": "spaces"
+        },
+        "interface-name": false,
+        "label-position": true,
+        "max-line-length": {
+            "options": 140
+        },
+        "member-access": false,
+        "prefer-object-spread": false,
+        "member-ordering": {
+            "options": [
+                "public-before-private",
+                "static-before-instance",
+                "variables-before-functions"
+            ]
+        },
+        "no-arg": true,
+        "no-bitwise": true,
+        "no-console": {
+            "options": [
+                "debug",
+                "info",
+                "time",
+                "timeEnd",
+                "trace"
+            ]
+        },
+        "no-construct": true,
+        "no-debugger": true,
+        "no-duplicate-variable": true,
+        "no-empty": true,
+        "no-eval": true,
+        "no-inferrable-types": false,
+        "no-shadowed-variable": true,
+        "no-string-literal": true,
+        "no-submodule-imports": false,
+        "no-switch-case-fall-through": true,
+        "no-trailing-whitespace": true,
+        "no-unused-expression": true,
+        "no-use-before-declare": false,
+        "no-var-keyword": true,
+        "no-var-requires": true,
+        "object-literal-sort-keys": false,
+        "one-line": {
+            "options": [
+                "check-open-brace",
+                "check-catch",
+                "check-else",
+                "check-whitespace"
+            ]
+        },
+        "one-variable-per-declaration": false,
+        "ordered-imports": false,
+        "object-literal-key-quotes": false,
+        "prefer-const": false,
+        "quotemark": {
+            "options": ["single", "jsx-double"]
+        },
+        "radix": true,
+        "semicolon": true,
+        "switch-default": false,
+        "trailing-comma": true,
+        "triple-equals": true,
+        "variable-name": false,
+        "whitespace": {
+            "options": [
+                "check-branch",
+                "check-decl",
+                "check-operator",
+                "check-separator",
+                "check-type"
+            ]
+        }
+    }
+}
