@@ -9,7 +9,7 @@
   },
   "main": "dist/bem-css-modules.js",
   "module": "src/bem-css-modules.js",
-  "types": "src/bem-css-modules.d.ts",
+  "types": "dist/bem-css-modules.d.ts",
   "repository": {
     "type": "git",
     "url": "git://github.com/Connormiha/bem-css-modules.git"
