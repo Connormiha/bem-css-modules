@@ -1,3 +1,6 @@
+## 1.3.2
+Fix TS types link
+
 ## 1.3.1
 Use tsc instead of babel for complile
 
