@@ -1,3 +1,6 @@
+## 1.3.3
+Allow undefined value as mod/state
+
 ## 1.3.2
 Fix TS types link
 
