@@ -7,11 +7,11 @@ type CssModuleType = {
 };
 
 type ModsType = {
-    [string]: boolean | string | number;
+    [string]: boolean | string | number | void;
 };
 
 type StatesType = {
-    [string]: boolean;
+    [string]: boolean | void;
 };
 
 type Options = {|

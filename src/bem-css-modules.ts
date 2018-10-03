@@ -5,11 +5,11 @@ type CssModuleType = {
 };
 
 interface ModsType {
-    [key: string]: boolean | string | number;
+    [key: string]: boolean | string | number | undefined;
 }
 
 interface StatesType {
-    [key: string]: boolean;
+    [key: string]: boolean | undefined;
 }
 
 interface IBlock {
@@ -69,7 +69,7 @@ function block(cssModule: CssModuleType, name, elementParam, modsParam, statesPa
 
                 let mod;
 
-                if (typeof modValue === 'boolean') {
+                if (typeof modValue === 'boolean' || typeof modValue === 'undefined') {
                     if (isDev) {
                         if (!(`${baseBlock}_${next}` in cssModule)) {
                             const message = `There is no ${baseBlock}_${next} in cssModule`;

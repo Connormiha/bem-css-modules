@@ -67,6 +67,7 @@ describe('bem-css-modules', () => {
     it('should return elements with mods', () => {
         expect(block('field', {disabled: true})).toBe('HASH_INPUT_FIELD HASH_INPUT_FIELD_DISABLED');
         expect(block('field', {disabled: false})).toBe('HASH_INPUT_FIELD');
+        expect(block('field', {disabled: undefined})).toBe('HASH_INPUT_FIELD');
         expect(block('field', {type: 'text'})).toBe('HASH_INPUT_FIELD HASH_INPUT_FIELD_TYPE_TEXT');
         expect(
             namesToArray(block('field', {type: 'phone', disabled: true}))
@@ -75,6 +76,7 @@ describe('bem-css-modules', () => {
 
     it('should return elements with states', () => {
         expect(block('field', null, {active: true, removed: false})).toBe('HASH_INPUT_FIELD HASH_IS_ACTIVE');
+        expect(block('field', null, {active: true, removed: undefined})).toBe('HASH_INPUT_FIELD HASH_IS_ACTIVE');
         expect(
             namesToArray(block('field', null, {active: true, removed: true}))
         ).toEqual(namesToArray('HASH_INPUT_FIELD HASH_IS_ACTIVE HASH_IS_REMOVED'));
