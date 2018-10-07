@@ -124,11 +124,22 @@ Type: `Object`
 Type: `Boolean`  
 Default: `false`  
 
+##### elementDelimiter
+Type: `String`  
+Default: `__`  
+
+##### modifierDelimiter
+Type: `String`  
+Default: `_`  
+
 #### Set settings
 
 ```js
 const block = require('bem-css-modules');
-block.setSettings({throwOnError: true});
+block.setSettings({
+    throwOnError: true,
+    modifierDelimiter: '--'
+});
 ```
 
 Throw exception if mod, element or state didn't found.

@@ -119,6 +119,29 @@ describe('bem-css-modules', () => {
         expect(dirtyBlock('icon')).toBe('INPUT__ICON');
     });
 
+    describe('alernative delimiters', () => {
+        let alernativeBlock = bem({
+            input: 'INPUT',
+            'input~disabled': 'INPUT_DISABLED',
+            'input%icon': 'INPUT__ICON',
+            'input%icon~red': 'INPUT__ICON_RED'
+        });
+
+        beforeAll(() => {
+            bem.setSettings({elementDelimiter: '%', modifierDelimiter: '~'});
+        });
+
+        afterAll(() => {
+            bem.setSettings({elementDelimiter: '__', modifierDelimiter: '_'});
+        });
+
+        it('should returns elements', () => {
+            expect(
+                namesToArray(alernativeBlock('icon', {red: true}))
+            ).toEqual(namesToArray('INPUT__ICON INPUT__ICON_RED'));
+        });
+    });
+
     describe('errors with throwOnError = true', () => {
         beforeEach(() => {
             bem.setSettings({throwOnError: true});
@@ -218,6 +241,18 @@ describe('bem-css-modules', () => {
         it('should throw error with unexisted states', () => {
             block('icon', null, {foo: true});
             expect(spy).toHaveBeenCalledWith('There is no is-foo in cssModule');
+        });
+
+        it('should skip unexisted states', () => {
+            expect(
+                namesToArray(block('icon', null, {foo: true, active: true}))
+            ).toEqual(namesToArray('HASH_INPUT_ICON HASH_IS_ACTIVE'));
+        });
+
+        it('should skip unexisted modes', () => {
+            expect(
+                namesToArray(block('field', {disabled: true, enabled: true, foo: 'bar'}))
+            ).toEqual(namesToArray('HASH_INPUT_FIELD HASH_INPUT_FIELD_DISABLED'));
         });
     });
 });

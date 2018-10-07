@@ -19,6 +19,8 @@ interface IBlock {
 
 interface IOptions {
     throwOnError?: boolean;
+    elementDelimiter?: string;
+    modifierDelimiter?: string;
 }
 
 interface IModule {
@@ -27,8 +29,10 @@ interface IModule {
 }
 
 const isDev = process.env.NODE_ENV !== 'production';
-const settings: IOptions = {
-    throwOnError: false
+const settings = {
+    throwOnError: false,
+    elementDelimiter: '__',
+    modifierDelimiter: '_'
 };
 
 /**
@@ -45,15 +49,16 @@ function block(cssModule: CssModuleType, name, elementParam, modsParam, statesPa
     const mods = isElementAsModes ? elementParam : modsParam;
     const states = isElementAsModes ? modsParam : statesParam;
     const element = isElementAsModes ? '' : elementParam;
+    const {modifierDelimiter, elementDelimiter, throwOnError} = settings;
 
-    const baseBlock = element ? `${name}__${element}` : name;
+    const baseBlock = element ? `${name}${elementDelimiter}${element}` : name;
     let result = cssModule[baseBlock] || '';
 
     if (isDev) {
         if (!result && !mods) {
-            const message = `There is no ${name}__${element} in cssModule`;
+            const message = `There is no ${name}${elementDelimiter}${element} in cssModule`;
 
-            if (settings.throwOnError) {
+            if (throwOnError) {
                 throw Error(message);
             } else {
                 console.warn(message);
@@ -71,38 +76,39 @@ function block(cssModule: CssModuleType, name, elementParam, modsParam, statesPa
 
                 if (typeof modValue === 'boolean' || typeof modValue === 'undefined') {
                     if (isDev) {
-                        if (!(`${baseBlock}_${next}` in cssModule)) {
-                            const message = `There is no ${baseBlock}_${next} in cssModule`;
+                        if (!(`${baseBlock}${modifierDelimiter}${next}` in cssModule)) {
+                            const message = `There is no ${baseBlock}${modifierDelimiter}${next} in cssModule`;
 
-                            if (settings.throwOnError) {
+                            if (throwOnError) {
                                 throw Error(message);
                             } else {
                                 console.warn(message);
-                                return '';
+                                return acc;
                             }
                         }
                     }
 
                     if (modValue) {
-                        mod = cssModule[`${baseBlock}_${next}`];
+                        mod = cssModule[`${baseBlock}${modifierDelimiter}${next}`];
                     } else {
                         return acc;
                     }
                 } else {
+                    const currentMode = `${baseBlock}${modifierDelimiter}${next}${modifierDelimiter}${mods[next]}`;
                     if (isDev) {
-                        if (!(`${baseBlock}_${next}_${mods[next]}` in cssModule)) {
-                            const message = `There is no ${baseBlock}_${next}_${mods[next]} in cssModule`;
+                        if (!(currentMode in cssModule)) {
+                            const message = `There is no ${currentMode} in cssModule`;
 
-                            if (settings.throwOnError) {
+                            if (throwOnError) {
                                 throw Error(message);
                             } else {
                                 console.warn(message);
-                                return '';
+                                return acc;
                             }
                         }
                     }
 
-                    mod = cssModule[`${baseBlock}_${next}_${mods[next]}`];
+                    mod = cssModule[currentMode];
                 }
 
                 return `${acc} ${mod}`;
@@ -121,11 +127,11 @@ function block(cssModule: CssModuleType, name, elementParam, modsParam, statesPa
                 if (!state) {
                     const message = `There is no is-${next} in cssModule`;
 
-                    if (settings.throwOnError) {
+                    if (throwOnError) {
                         throw Error(message);
                     } else {
                         console.warn(message);
-                        return '';
+                        return acc;
                     }
                 }
 
@@ -135,8 +141,6 @@ function block(cssModule: CssModuleType, name, elementParam, modsParam, statesPa
 
     return result.trim();
 }
-
-const regExpClearBEM = /__.*/g;
 
 const extractModuleName = (cssModule) => {
     if (isDev) {
@@ -152,7 +156,7 @@ const extractModuleName = (cssModule) => {
         }
     }
 
-    const [name] = Object.keys(cssModule);
+    let [name] = Object.keys(cssModule);
 
     if (isDev) {
         if (!name) {
@@ -167,13 +171,25 @@ const extractModuleName = (cssModule) => {
         }
     }
 
-    return name.replace(regExpClearBEM, '');
+    const indexElement = name.indexOf(settings.elementDelimiter);
+
+    if (indexElement !== -1) {
+        name = name.slice(0, indexElement);
+    }
+
+    const indexModifier = name.indexOf(settings.modifierDelimiter);
+
+    if (indexModifier !== -1) {
+        name = name.slice(0, indexModifier);
+    }
+
+    return name;
 };
 
 const bem: any = (cssModule, name) =>
     block.bind(null, cssModule, name || extractModuleName(cssModule));
 
-bem.setSettings = (newSettings) =>
+bem.setSettings = (newSettings: IOptions) =>
     Object.assign(settings, newSettings);
 
 export default (bem as IModule);
