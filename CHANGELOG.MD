@@ -1,3 +1,6 @@
+## 1.4.0
+Added alternative bem delimiters via settings.
+
 ## 1.3.3
 Allow undefined value as mod/state
 
