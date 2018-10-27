@@ -1,3 +1,6 @@
+## 1.4.1
+Fix Flow types
+
 ## 1.4.0
 Added alternative bem delimiters via settings.
 
