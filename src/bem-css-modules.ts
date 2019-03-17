@@ -44,7 +44,7 @@ const settings = {
  * @param {Object} [states]
  * @return {String}
  */
-function block(cssModule: CssModuleType, name, elementParam, modsParam, statesParam) {
+function block(cssModule: CssModuleType, name: string, elementParam, modsParam, statesParam) {
     const isElementAsModes = elementParam && typeof elementParam === 'object';
     const mods = isElementAsModes ? elementParam : modsParam;
     const states = isElementAsModes ? modsParam : statesParam;
@@ -72,7 +72,7 @@ function block(cssModule: CssModuleType, name, elementParam, modsParam, statesPa
             .reduce((acc, next) => {
                 const modValue = mods[next];
 
-                let mod;
+                let mod: string;
 
                 if (typeof modValue === 'boolean' || typeof modValue === 'undefined') {
                     if (isDev) {

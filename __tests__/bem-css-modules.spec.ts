@@ -45,7 +45,7 @@ describe('bem-css-modules', () => {
         ).toEqual(namesToArray('HASH_INPUT HASH_INPUT_DISABLED HASH_IS_ACTIVE'));
 
         expect(
-            namesToArray(block(null, {disabled: true}, {active: true}))
+            namesToArray(block(null as any, {disabled: true}, {active: true}))
         ).toEqual(namesToArray('HASH_INPUT HASH_INPUT_DISABLED HASH_IS_ACTIVE'));
 
         expect(
@@ -82,7 +82,7 @@ describe('bem-css-modules', () => {
         ).toEqual(namesToArray('HASH_INPUT_FIELD HASH_IS_ACTIVE HASH_IS_REMOVED'));
 
         expect(
-            namesToArray(block(null, null, {active: true, removed: true}))
+            namesToArray(block(null as any, null, {active: true, removed: true}))
         ).toEqual(namesToArray('HASH_INPUT HASH_IS_ACTIVE HASH_IS_REMOVED'));
     });
 
@@ -152,11 +152,11 @@ describe('bem-css-modules', () => {
         });
 
         it('should throw error with invalid css modules', () => {
-            expect(() => bem()).toThrowError('cssModule object should be an Object with keys');
-            expect(() => bem(null)).toThrowError('cssModule object should be an Object with keys');
-            expect(() => bem(false)).toThrowError('cssModule object should be an Object with keys');
-            expect(() => bem('foo')).toThrowError('cssModule object should be an Object with keys');
-            expect(() => bem([])).toThrowError('cssModule object should be an Object with keys');
+            expect(() => (bem as any)()).toThrowError('cssModule object should be an Object with keys');
+            expect(() => bem(null as any)).toThrowError('cssModule object should be an Object with keys');
+            expect(() => bem(false as any)).toThrowError('cssModule object should be an Object with keys');
+            expect(() => bem('foo' as any)).toThrowError('cssModule object should be an Object with keys');
+            expect(() => bem([] as any)).toThrowError('cssModule object should be an Object with keys');
         });
 
         it('should throw error with css modules without keys', () => {
@@ -200,10 +200,10 @@ describe('bem-css-modules', () => {
         it('should throw error with invalid css modules', () => {
             [
                 [() => bem(), 'cssModule object should be an Object with keys'],
-                [() => bem(null), 'cssModule object should be an Object with keys'],
-                [() => bem(false), 'cssModule object should be an Object with keys'],
-                [() => bem('foo'), 'cssModule object should be an Object with keys'],
-                [() => bem([]), 'cssModule object should be an Object with keys'],
+                [() => bem(null as any), 'cssModule object should be an Object with keys'],
+                [() => bem(false as any), 'cssModule object should be an Object with keys'],
+                [() => bem('foo' as any), 'cssModule object should be an Object with keys'],
+                [() => bem([] as any), 'cssModule object should be an Object with keys'],
             ].forEach(([fn, message]) => {
                 spy.mockReset();
                 fn();
