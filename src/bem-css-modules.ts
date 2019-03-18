@@ -71,10 +71,13 @@ function block(cssModule: CssModuleType, name: string, elementParam, modsParam, 
         result = Object.keys(mods)
             .reduce((acc, next) => {
                 const modValue = mods[next];
-
                 let mod: string;
 
-                if (typeof modValue === 'boolean' || typeof modValue === 'undefined') {
+                if (modValue === undefined) {
+                    return acc;
+                }
+
+                if (typeof modValue === 'boolean') {
                     if (isDev) {
                         if (!(`${baseBlock}${modifierDelimiter}${next}` in cssModule)) {
                             const message = `There is no ${baseBlock}${modifierDelimiter}${next} in cssModule`;
