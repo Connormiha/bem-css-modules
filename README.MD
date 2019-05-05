@@ -90,7 +90,7 @@ export default () => {
 import style from './input.css';
 import block from 'bem-css-modules';
 
-const b = (style);// Create BEM Generator for current CSS module
+const b = block(style);// Create BEM Generator for current CSS module
 /*
 style is object like this
 {
