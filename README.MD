@@ -108,7 +108,7 @@ style is object like this
 b(); // 'HASH_INPUT'
 b('field'); // 'HASH_INPUT_FIELD'  (form BEM's input__field)
 b('field', {type: 'text'}); // 'HASH_INPUT_FIELD HASH_INPUT_FIELD_TYPE_TEXT'  (form BEM's 'input__field input__field_type_text')
-b('field', {disabled: true}); // 'HASH_INPUT_FIELD HASH_INPUT_FIELD_DISABLED'  (form BEM's 'input__field input__field_type_text')
+b('field', {disabled: true}); // 'HASH_INPUT_FIELD HASH_INPUT_FIELD_DISABLED'  (form BEM's 'input__field input__field_disabled')
 b('icon', null, {active: true, removed: false); // 'HASH_INPUT_ICON HASH_IS_ACTIVE' (from BEM's 'input__icon is-active')
 b('icon', {active: true, removed: false); // 'HASH_INPUT_ICON HASH_IS_ACTIVE' (from BEM's 'input__icon is-active')
 ```
