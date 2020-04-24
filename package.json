@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Mikhail Bodrov",
   "engines": {
-    "node": ">=6.4.0"
+    "node": ">=8.9.0"
   },
   "main": "dist/bem-css-modules.js",
   "types": "dist/bem-css-modules.d.ts",
