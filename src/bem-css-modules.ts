@@ -1,20 +1,20 @@
-type CssModuleType = {
+type ICssModuleType = {
     [key: string]: string;
 } | {
     readonly [key: string]: string;
 };
 
-interface ModsType {
+interface IModsType {
     [key: string]: boolean | string | number | undefined;
 }
 
-interface StatesType {
+interface IStatesType {
     [key: string]: boolean | undefined;
 }
 
 interface IBlock {
-    (element?: string, mods?: ModsType | null, states?: StatesType | null): string;
-    (mods?: ModsType | null, states?: StatesType | null): string;
+    (element?: string, mods?: IModsType | null, states?: IStatesType | null): string;
+    (mods?: IModsType | null, states?: IStatesType | null): string;
 }
 
 interface IOptions {
@@ -24,7 +24,7 @@ interface IOptions {
 }
 
 interface IModule {
-    (cssModule: CssModuleType, name?: string): IBlock;
+    (cssModule: ICssModuleType, name?: string): IBlock;
     setSettings(options: IOptions): void;
 }
 
@@ -44,7 +44,7 @@ const settings = {
  * @param {Object} [states]
  * @return {String}
  */
-function block(cssModule: CssModuleType, name: string, elementParam, modsParam, statesParam) {
+function block(cssModule: ICssModuleType, name: string, elementParam, modsParam, statesParam) {
     const isElementAsModes = elementParam && typeof elementParam === 'object';
     const mods = isElementAsModes ? elementParam : modsParam;
     const states = isElementAsModes ? modsParam : statesParam;
@@ -54,16 +54,14 @@ function block(cssModule: CssModuleType, name: string, elementParam, modsParam, 
     const baseBlock = element ? `${name}${elementDelimiter}${element}` : name;
     let result = cssModule[baseBlock] || '';
 
-    if (isDev) {
-        if (!result && !mods) {
-            const message = `There is no ${name}${elementDelimiter}${element} in cssModule`;
+    if (isDev && !result && !mods) {
+        const message = `There is no ${name}${elementDelimiter}${element} in cssModule`;
 
-            if (throwOnError) {
-                throw Error(message);
-            } else {
-                console.warn(message);
-                return '';
-            }
+        if (throwOnError) {
+            throw Error(message);
+        } else {
+            console.warn(message);
+            return '';
         }
     }
 
@@ -78,16 +76,14 @@ function block(cssModule: CssModuleType, name: string, elementParam, modsParam, 
                 }
 
                 if (typeof modValue === 'boolean') {
-                    if (isDev) {
-                        if (!(`${baseBlock}${modifierDelimiter}${next}` in cssModule)) {
-                            const message = `There is no ${baseBlock}${modifierDelimiter}${next} in cssModule`;
+                    if (isDev && !(`${baseBlock}${modifierDelimiter}${next}` in cssModule)) {
+                        const message = `There is no ${baseBlock}${modifierDelimiter}${next} in cssModule`;
 
-                            if (throwOnError) {
-                                throw Error(message);
-                            } else {
-                                console.warn(message);
-                                return acc;
-                            }
+                        if (throwOnError) {
+                            throw Error(message);
+                        } else {
+                            console.warn(message);
+                            return acc;
                         }
                     }
 
@@ -98,16 +94,14 @@ function block(cssModule: CssModuleType, name: string, elementParam, modsParam, 
                     }
                 } else {
                     const currentMode = `${baseBlock}${modifierDelimiter}${next}${modifierDelimiter}${mods[next]}`;
-                    if (isDev) {
-                        if (!(currentMode in cssModule)) {
-                            const message = `There is no ${currentMode} in cssModule`;
+                    if (isDev && !(currentMode in cssModule)) {
+                        const message = `There is no ${currentMode} in cssModule`;
 
-                            if (throwOnError) {
-                                throw Error(message);
-                            } else {
-                                console.warn(message);
-                                return acc;
-                            }
+                        if (throwOnError) {
+                            throw Error(message);
+                        } else {
+                            console.warn(message);
+                            return acc;
                         }
                     }
 
@@ -146,31 +140,27 @@ function block(cssModule: CssModuleType, name: string, elementParam, modsParam, 
 }
 
 const extractModuleName = (cssModule) => {
-    if (isDev) {
-        if (!cssModule || typeof cssModule !== 'object' || Array.isArray(cssModule)) {
-            const message = 'cssModule object should be an Object with keys';
+    if (isDev && !cssModule || typeof cssModule !== 'object' || Array.isArray(cssModule)) {
+        const message = 'cssModule object should be an Object with keys';
 
-            if (settings.throwOnError) {
-                throw Error(message);
-            } else {
-                console.warn(message);
-                return '';
-            }
+        if (settings.throwOnError) {
+            throw Error(message);
+        } else {
+            console.warn(message);
+            return '';
         }
     }
 
     let [name] = Object.keys(cssModule);
 
-    if (isDev) {
-        if (!name) {
-            const message = 'cssModule has no keys';
+    if (isDev && !name) {
+        const message = 'cssModule has no keys';
 
-            if (settings.throwOnError) {
-                throw Error(message);
-            } else {
-                console.warn(message);
-                return '';
-            }
+        if (settings.throwOnError) {
+            throw Error(message);
+        } else {
+            console.warn(message);
+            return '';
         }
     }
 

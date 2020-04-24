@@ -30,17 +30,21 @@
     "build": "rm -fr dist && mkdir dist && cp src/*.flow dist && tsc -p src --outDir dist",
     "types": "tsc -p __tests__/ts-types --noEmit && flow check __tests__/flow-types",
     "coverage": "jest --coverage",
-    "lint": "tslint -p ./",
+    "lint": "eslint --ext .ts ./src",
     "prepare": "npm run lint && npm test && npm run types && npm run build",
     "test": "jest --no-cache"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
     "@types/node": "13.13.2",
+    "@typescript-eslint/eslint-plugin": "2.29.0",
+    "@typescript-eslint/parser": "2.29.0",
+    "eslint": "6.8.0",
+    "eslint-plugin-jest": "23.8.2",
+    "eslint-plugin-sonarjs": "0.5.0",
     "flow-bin": "0.123.0",
     "husky": "4.2.5",
     "jest-cli": "25.4.0",
-    "tslint": "5.16.0",
     "typescript": "3.8.3"
   },
   "husky": {
