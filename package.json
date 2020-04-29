@@ -36,15 +36,15 @@
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
-    "@types/node": "13.13.2",
-    "@typescript-eslint/eslint-plugin": "2.29.0",
-    "@typescript-eslint/parser": "2.29.0",
+    "@types/node": "13.13.4",
+    "@typescript-eslint/eslint-plugin": "2.30.0",
+    "@typescript-eslint/parser": "2.30.0",
     "eslint": "6.8.0",
     "eslint-plugin-jest": "23.8.2",
     "eslint-plugin-sonarjs": "0.5.0",
     "flow-bin": "0.123.0",
     "husky": "4.2.5",
-    "jest-cli": "25.4.0",
+    "jest-cli": "25.5.1",
     "typescript": "3.8.3"
   },
   "husky": {
