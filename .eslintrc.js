@@ -13,7 +13,6 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:sonarjs/recommended',
         'plugin:jest/all',
     ],
     plugins: [
@@ -21,10 +20,11 @@ module.exports = {
     ],
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
-        '@typescript-eslint/interface-name-prefix': ['error', {
-            prefixWithI: 'always'
-        }],
+        '@typescript-eslint/naming-convention': ['error', {
+            selector: 'interface',
+            format: ['PascalCase'],
+            custom: { regex: '^I[A-Z]', match: true }
+          }],
         '@typescript-eslint/no-explicit-any': 'off',
-        'sonarjs/cognitive-complexity': 'off'
     }
 };
