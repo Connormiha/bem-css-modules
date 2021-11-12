@@ -30,9 +30,9 @@ interface IModule {
 
 const isDev = process.env.NODE_ENV !== 'production';
 const settings = {
-    throwOnError: false,
     elementDelimiter: '__',
-    modifierDelimiter: '_'
+    modifierDelimiter: '_',
+    throwOnError: false
 };
 
 /**
@@ -54,12 +54,13 @@ function block(cssModule: ICssModuleType, name: string, elementParam, modsParam,
     const baseBlock = element ? `${name}${elementDelimiter}${element}` : name;
     let result = cssModule[baseBlock] || '';
 
-    if (isDev && !result && !mods) {
+    if (isDev && (!result && !mods)) {
         const message = `There is no ${name}${elementDelimiter}${element} in cssModule`;
 
         if (throwOnError) {
             throw Error(message);
         } else {
+            /* eslint-disable-next-line no-console */
             console.warn(message);
             return '';
         }
@@ -82,6 +83,7 @@ function block(cssModule: ICssModuleType, name: string, elementParam, modsParam,
                         if (throwOnError) {
                             throw Error(message);
                         } else {
+                            /* eslint-disable-next-line no-console */
                             console.warn(message);
                             return acc;
                         }
@@ -100,6 +102,7 @@ function block(cssModule: ICssModuleType, name: string, elementParam, modsParam,
                         if (throwOnError) {
                             throw Error(message);
                         } else {
+                            /* eslint-disable-next-line no-console */
                             console.warn(message);
                             return acc;
                         }
@@ -127,6 +130,7 @@ function block(cssModule: ICssModuleType, name: string, elementParam, modsParam,
                     if (throwOnError) {
                         throw Error(message);
                     } else {
+                        /* eslint-disable-next-line no-console */
                         console.warn(message);
                         return acc;
                     }
@@ -140,12 +144,13 @@ function block(cssModule: ICssModuleType, name: string, elementParam, modsParam,
 }
 
 const extractModuleName = (cssModule) => {
-    if (isDev && !cssModule || typeof cssModule !== 'object' || Array.isArray(cssModule)) {
+    if (isDev && (!cssModule || typeof cssModule !== 'object' || Array.isArray(cssModule))) {
         const message = 'cssModule object should be an Object with keys';
 
         if (settings.throwOnError) {
             throw Error(message);
         } else {
+            /* eslint-disable-next-line no-console */
             console.warn(message);
             return '';
         }
@@ -159,6 +164,7 @@ const extractModuleName = (cssModule) => {
         if (settings.throwOnError) {
             throw Error(message);
         } else {
+            /* eslint-disable-next-line no-console */
             console.warn(message);
             return '';
         }
