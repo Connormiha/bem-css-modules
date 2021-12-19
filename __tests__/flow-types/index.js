@@ -16,4 +16,8 @@ const styleModule: {|+foo: string|} = {foo: '1'};
 block(styleModule);
 
 block.setSettings({throwOnError: true});
+block.setSettings({
+    elementDelimiter: '---',
+    modifierDelimiter: '---',
+});
 block.setSettings({});

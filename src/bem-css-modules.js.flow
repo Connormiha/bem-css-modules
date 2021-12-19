@@ -16,6 +16,8 @@ type StatesType = {
 
 type Options = {|
     throwOnError?: boolean;
+    elementDelimiter?: string;
+    modifierDelimiter?: string;
 |};
 
 interface Block {
