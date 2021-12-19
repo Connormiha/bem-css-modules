@@ -1,3 +1,6 @@
+## 1.4.3
+Fix types for Flow
+
 ## 1.4.2
 Minor fix for error messages
 
