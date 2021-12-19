@@ -1,7 +1,7 @@
 {
   "name": "bem-css-modules",
   "description": "BEM class name generator for webpack css modules",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "license": "MIT",
   "author": "Mikhail Bodrov",
   "engines": {
