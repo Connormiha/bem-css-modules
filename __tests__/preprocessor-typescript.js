@@ -3,10 +3,12 @@ const tsconfig = require('../tsconfig.json');
 
 module.exports = {
     process(src, path) {
-        return tsc.transpile(
-            src,
-            tsconfig.compilerOptions,
-            path, []
-        );
+        return {
+            code: tsc.transpile(
+                src,
+                tsconfig.compilerOptions,
+                path, []
+            )
+        };
     }
 };
